@@ -51,9 +51,9 @@ const modifierGuards: Record<
  */
 export const withModifiers = <
   T extends (event: Event, ...args: unknown[]) => any,
->(
-  fn: T & { _withMods?: { [key: string]: T } },
-  modifiers: VOnModifiers[],
+  >(
+    fn: T & { _withMods?: { [key: string]: T } },
+    modifiers: VOnModifiers[],
 ): T => {
   const cache = fn._withMods || (fn._withMods = {})
   const cacheKey = modifiers.join('.')
@@ -72,7 +72,7 @@ export const withModifiers = <
 // Kept for 2.x compat.
 // Note: IE11 compat for `spacebar` and `del` is removed for now.
 const keyNames: Record<
-  'esc' | 'space' | 'up' | 'left' | 'right' | 'down' | 'delete',
+  'esc' | 'space' | 'up' | 'left' | 'right' | 'down' | 'delete' | 'tab' | 'enter',
   string
 > = {
   esc: 'escape',
@@ -82,6 +82,8 @@ const keyNames: Record<
   right: 'arrow-right',
   down: 'arrow-down',
   delete: 'backspace',
+  tab: 'tab',
+  enter: 'enter'
 }
 
 /**
